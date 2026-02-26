@@ -179,7 +179,7 @@ export function GameBoard({
               : "bg-zinc-100 dark:bg-zinc-800/50 border-2 border-transparent"
           }`}
         >
-          <span className="text-2xl font-bold text-violet-600 dark:text-violet-400 mb-1">
+          <span className="text-2xl font-bold text-amber-600 dark:text-amber-400 mb-1">
             {gameState.scores.X}
           </span>
           <span className="text-sm font-medium text-zinc-700 dark:text-zinc-300">
@@ -197,11 +197,11 @@ export function GameBoard({
         <div
           className={`flex flex-col items-center px-6 py-4 rounded-2xl transition-all duration-300 ${
             gameState.currentPlayer === "O" && !gameState.winner
-              ? "bg-indigo-500/10 border-2 border-indigo-500/30 scale-105"
+              ? "bg-amber-400/10 border-2 border-amber-400/30 scale-105"
               : "bg-zinc-100 dark:bg-zinc-800/50 border-2 border-transparent"
           }`}
         >
-          <span className="text-2xl font-bold text-indigo-600 dark:text-indigo-400 mb-1">
+          <span className="text-2xl font-bold text-amber-500 dark:text-amber-300 mb-1">
             {gameState.scores.O}
           </span>
           <span className="text-sm font-medium text-zinc-700 dark:text-zinc-300">
@@ -219,11 +219,11 @@ export function GameBoard({
               ? "text-zinc-600 dark:text-zinc-400"
               : gameState.winner
               ? gameState.winner === "X"
-                ? "text-violet-600 dark:text-violet-400"
-                : "text-indigo-600 dark:text-indigo-400"
+                ? "text-amber-600 dark:text-amber-400"
+                : "text-amber-500 dark:text-amber-300"
               : gameState.currentPlayer === "X"
-              ? "text-violet-600 dark:text-violet-400"
-              : "text-indigo-600 dark:text-indigo-400"
+              ? "text-amber-600 dark:text-amber-400"
+              : "text-amber-500 dark:text-amber-300"
           }`}
         >
           {getStatusMessage()}
@@ -245,8 +245,8 @@ export function GameBoard({
                   : "bg-white dark:bg-zinc-700 cursor-default"
               }
               ${winningLine?.includes(index) ? "animate-pulse-win" : ""}
-              ${cell === "X" ? "text-violet-600 dark:text-violet-400" : ""}
-              ${cell === "O" ? "text-indigo-600 dark:text-indigo-400" : ""}
+              ${cell === "X" ? "text-amber-600 dark:text-amber-400" : ""}
+              ${cell === "O" ? "text-amber-500 dark:text-amber-300" : ""}
             `}
           >
             {cell && (
@@ -260,7 +260,7 @@ export function GameBoard({
       <div className="flex gap-3 justify-center">
         <button
           onClick={resetGame}
-          className="px-6 py-3 rounded-xl bg-violet-600 text-white font-medium hover:bg-violet-700 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 shadow-lg shadow-violet-500/25"
+          className="px-6 py-3 rounded-xl bg-amber-600 text-white font-medium hover:bg-amber-700 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 shadow-lg shadow-amber-500/25"
         >
           New Round
         </button>

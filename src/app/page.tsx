@@ -32,7 +32,7 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-zinc-50 via-zinc-100 to-zinc-200 dark:from-zinc-950 dark:via-zinc-900 dark:to-zinc-800 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br from-amber-50 via-amber-100 to-amber-200 dark:from-amber-950 dark:via-amber-900 dark:to-amber-800 flex items-center justify-center p-4">
       <main className="w-full flex flex-col items-center justify-center">
         {phase === "setup" && <PlayerSetup onComplete={handleSetupComplete} />}
 
