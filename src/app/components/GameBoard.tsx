@@ -165,7 +165,7 @@ export function GameBoard({
     <div className="w-full max-w-md animate-fade-in">
       {/* Header */}
       <div className="text-center mb-6">
-        <h1 className="text-3xl font-bold bg-gradient-to-r from-violet-600 to-indigo-600 bg-clip-text text-transparent mb-2">
+        <h1 className="text-3xl font-bold bg-gradient-to-r from-amber-500 to-amber-700 bg-clip-text text-transparent mb-2">
           Tic Tac Toe
         </h1>
       </div>
@@ -175,7 +175,7 @@ export function GameBoard({
         <div
           className={`flex flex-col items-center px-6 py-4 rounded-2xl transition-all duration-300 ${
             gameState.currentPlayer === "X" && !gameState.winner
-              ? "bg-violet-500/10 border-2 border-violet-500/30 scale-105"
+              ? "bg-amber-500/10 border-2 border-amber-500/30 scale-105"
               : "bg-zinc-100 dark:bg-zinc-800/50 border-2 border-transparent"
           }`}
         >

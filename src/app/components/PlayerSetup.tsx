@@ -27,7 +27,7 @@ export function PlayerSetup({ onComplete }: PlayerSetupProps) {
   return (
     <div className="w-full max-w-md animate-fade-in">
       <div className="mb-8 text-center">
-        <h1 className="text-4xl font-bold bg-gradient-to-r from-violet-600 to-indigo-600 bg-clip-text text-transparent mb-3">
+        <h1 className="text-4xl font-bold bg-gradient-to-r from-amber-500 to-amber-700 bg-clip-text text-transparent mb-3">
           Tic Tac Toe
         </h1>
         <p className="text-zinc-500 dark:text-zinc-400">
@@ -53,10 +53,10 @@ export function PlayerSetup({ onComplete }: PlayerSetupProps) {
                 setError("");
               }}
               placeholder="Enter Player A name"
-              className="w-full px-4 py-3 rounded-xl border-2 border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 placeholder-zinc-400 focus:border-violet-500 focus:outline-none transition-all duration-200"
+              className="w-full px-4 py-3 rounded-xl border-2 border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 placeholder-zinc-400 focus:border-amber-500 focus:outline-none transition-all duration-200"
               maxLength={20}
             />
-            <div className="absolute right-3 top-[38px] text-violet-500 font-bold text-lg">
+            <div className="absolute right-3 top-[38px] text-amber-500 font-bold text-lg">
               X
             </div>
           </div>
@@ -77,10 +77,10 @@ export function PlayerSetup({ onComplete }: PlayerSetupProps) {
                 setError("");
               }}
               placeholder="Enter Player B name"
-              className="w-full px-4 py-3 rounded-xl border-2 border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 placeholder-zinc-400 focus:border-indigo-500 focus:outline-none transition-all duration-200"
+              className="w-full px-4 py-3 rounded-xl border-2 border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 placeholder-zinc-400 focus:border-amber-600 focus:outline-none transition-all duration-200"
               maxLength={20}
             />
-            <div className="absolute right-3 top-[38px] text-indigo-500 font-bold text-lg">
+            <div className="absolute right-3 top-[38px] text-amber-600 font-bold text-lg">
               O
             </div>
           </div>
@@ -94,7 +94,7 @@ export function PlayerSetup({ onComplete }: PlayerSetupProps) {
 
         <button
           type="submit"
-          className="w-full py-4 px-6 rounded-xl bg-gradient-to-r from-violet-600 to-indigo-600 text-white font-semibold text-lg shadow-lg shadow-violet-500/25 hover:shadow-xl hover:shadow-violet-500/30 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
+          className="w-full py-4 px-6 rounded-xl bg-gradient-to-r from-amber-500 to-amber-700 text-white font-semibold text-lg shadow-lg shadow-amber-500/25 hover:shadow-xl hover:shadow-amber-500/30 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
         >
           Start Game
         </button>

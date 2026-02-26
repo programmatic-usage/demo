@@ -140,7 +140,7 @@ export function DiceRoll({ playerA, playerB, onComplete }: DiceRollProps) {
       <div className="flex justify-center gap-8 mb-10">
         <div className="flex flex-col items-center gap-3">
           <Dice value={diceA} isRolling={isRolling} />
-          <span className="text-sm font-medium text-violet-600 dark:text-violet-400">
+          <span className="text-sm font-medium text-amber-600 dark:text-amber-400">
             {playerA}
           </span>
           <span className="text-xs text-zinc-400">Player A (X)</span>
@@ -148,7 +148,7 @@ export function DiceRoll({ playerA, playerB, onComplete }: DiceRollProps) {
 
         <div className="flex flex-col items-center gap-3">
           <Dice value={diceB} isRolling={isRolling} />
-          <span className="text-sm font-medium text-indigo-600 dark:text-indigo-400">
+          <span className="text-sm font-medium text-amber-500 dark:text-amber-300">
             {playerB}
           </span>
           <span className="text-xs text-zinc-400">Player B (O)</span>
@@ -157,7 +157,7 @@ export function DiceRoll({ playerA, playerB, onComplete }: DiceRollProps) {
 
       {showWinner && result && (
         <div className="text-center animate-fade-in">
-          <div className="inline-flex flex-col items-center gap-3 px-8 py-6 rounded-2xl bg-gradient-to-r from-violet-500/10 to-indigo-500/10 border border-violet-500/20">
+          <div className="inline-flex flex-col items-center gap-3 px-8 py-6 rounded-2xl bg-gradient-to-r from-amber-500/10 to-amber-600/10 border border-amber-500/20">
             <p className="text-lg text-zinc-600 dark:text-zinc-400">
               {result.rollA === result.rollB ? "It's a tie! " : ""}
               <span className="font-semibold text-zinc-900 dark:text-zinc-100">
@@ -169,8 +169,8 @@ export function DiceRoll({ playerA, playerB, onComplete }: DiceRollProps) {
               <span
                 className={`text-2xl font-bold ${
                   result.winner === "A"
-                    ? "text-violet-600 dark:text-violet-400"
-                    : "text-indigo-600 dark:text-indigo-400"
+                    ? "text-amber-600 dark:text-amber-400"
+                    : "text-amber-500 dark:text-amber-300"
                 }`}
               >
                 {result.winner === "A" ? "X" : "O"}
