@@ -43,13 +43,11 @@ export function GameBoard({
   const getStartingPlayer = (): Player => (firstPlayer === "A" ? "X" : "O");
 
   const [gameState, setGameState] = useState<GameState>(() => {
-    // Try to load from local storage
     if (typeof window !== "undefined") {
       const saved = localStorage.getItem(STORAGE_KEY);
       if (saved) {
         try {
           const parsed = JSON.parse(saved);
-          // Only restore if players match
           if (
             parsed.playerA === playerA &&
             parsed.playerB === playerB &&
@@ -73,7 +71,6 @@ export function GameBoard({
 
   const [winningLine, setWinningLine] = useState<number[] | null>(null);
 
-  // Save to local storage
   useEffect(() => {
     if (typeof window !== "undefined") {
       localStorage.setItem(
@@ -161,68 +158,72 @@ export function GameBoard({
     return `${getPlayerName(gameState.currentPlayer)}'s Turn`;
   };
 
+  const isActivePlayer = (player: Player) => 
+    gameState.currentPlayer === player && !gameState.winner;
+
   return (
     <div className="w-full max-w-md animate-fade-in">
       {/* Header */}
-      <div className="text-center mb-6">
-        <h1 className="text-3xl font-bold bg-gradient-to-r from-amber-500 to-amber-700 bg-clip-text text-transparent mb-2">
+      <div className="text-center mb-8">
+        <h1 className="text-3xl font-bold bg-gradient-to-r from-amber-600 via-amber-500 to-amber-600 bg-clip-text text-transparent">
           Tic Tac Toe
         </h1>
       </div>
 
       {/* Score Board */}
       <div className="flex justify-center gap-4 mb-8">
+        {/* Player X Score */}
         <div
           className={`flex flex-col items-center px-6 py-4 rounded-2xl transition-all duration-300 ${
-            gameState.currentPlayer === "X" && !gameState.winner
-              ? "bg-amber-500/10 border-2 border-amber-500/30 scale-105"
-              : "bg-zinc-100 dark:bg-zinc-800/50 border-2 border-transparent"
+            isActivePlayer("X")
+              ? "bg-gradient-to-br from-amber-500 to-amber-600 text-white shadow-xl shadow-amber-500/30 scale-105"
+              : "bg-white/80 dark:bg-amber-950/30 border-2 border-amber-200 dark:border-amber-800"
           }`}
         >
-          <span className="text-2xl font-bold text-amber-600 dark:text-amber-400 mb-1">
+          <span className={`text-3xl font-bold mb-1 ${isActivePlayer("X") ? "text-white" : "text-amber-700 dark:text-amber-300"}`}>
             {gameState.scores.X}
           </span>
-          <span className="text-sm font-medium text-zinc-700 dark:text-zinc-300">
+          <span className={`text-sm font-semibold ${isActivePlayer("X") ? "text-amber-100" : "text-amber-900 dark:text-amber-200"}`}>
             {playerA}
           </span>
-          <span className="text-xs text-zinc-400">X</span>
+          <span className={`text-xs ${isActivePlayer("X") ? "text-amber-200" : "text-amber-600/70 dark:text-amber-400/70"}`}>X</span>
         </div>
 
+        {/* VS */}
         <div className="flex flex-col items-center justify-center">
-          <span className="text-xl font-bold text-zinc-300 dark:text-zinc-600">
-            VS
-          </span>
+          <span className="text-xl font-bold text-amber-400/50">VS</span>
         </div>
 
+        {/* Player O Score */}
         <div
           className={`flex flex-col items-center px-6 py-4 rounded-2xl transition-all duration-300 ${
-            gameState.currentPlayer === "O" && !gameState.winner
-              ? "bg-amber-400/10 border-2 border-amber-400/30 scale-105"
-              : "bg-zinc-100 dark:bg-zinc-800/50 border-2 border-transparent"
+            isActivePlayer("O")
+              ? "bg-gradient-to-br from-amber-400 to-amber-500 text-white shadow-xl shadow-amber-400/30 scale-105"
+              : "bg-white/80 dark:bg-amber-950/30 border-2 border-amber-200 dark:border-amber-800"
           }`}
         >
-          <span className="text-2xl font-bold text-amber-500 dark:text-amber-300 mb-1">
+          <span className={`text-3xl font-bold mb-1 ${isActivePlayer("O") ? "text-white" : "text-amber-600 dark:text-amber-300"}`}>
             {gameState.scores.O}
           </span>
-          <span className="text-sm font-medium text-zinc-700 dark:text-zinc-300">
+          <span className={`text-sm font-semibold ${isActivePlayer("O") ? "text-amber-100" : "text-amber-900 dark:text-amber-200"}`}>
             {playerB}
           </span>
-          <span className="text-xs text-zinc-400">O</span>
+          <span className={`text-xs ${isActivePlayer("O") ? "text-amber-100" : "text-amber-600/70 dark:text-amber-400/70"}`}>O</span>
         </div>
       </div>
 
       {/* Status */}
       <div className="text-center mb-6">
         <p
-          className={`text-xl font-semibold transition-all duration-300 ${
+          className={`text-xl font-bold transition-all duration-300 ${
             gameState.winner === "draw"
-              ? "text-zinc-600 dark:text-zinc-400"
+              ? "text-amber-800 dark:text-amber-200"
               : gameState.winner
               ? gameState.winner === "X"
-                ? "text-amber-600 dark:text-amber-400"
+                ? "text-amber-700 dark:text-amber-400"
                 : "text-amber-500 dark:text-amber-300"
               : gameState.currentPlayer === "X"
-              ? "text-amber-600 dark:text-amber-400"
+              ? "text-amber-700 dark:text-amber-400"
               : "text-amber-500 dark:text-amber-300"
           }`}
         >
@@ -231,21 +232,21 @@ export function GameBoard({
       </div>
 
       {/* Game Board */}
-      <div className="grid grid-cols-3 gap-3 mb-8 p-3 bg-zinc-100 dark:bg-zinc-800/50 rounded-2xl">
+      <div className="grid grid-cols-3 gap-3 mb-8 p-4 bg-gradient-to-br from-amber-100 to-amber-200 dark:from-amber-900/40 dark:to-amber-800/40 rounded-3xl shadow-inner">
         {gameState.board.map((cell, index) => (
           <button
             key={index}
             onClick={() => handleCellClick(index)}
             disabled={!!cell || !!gameState.winner}
             className={`
-              aspect-square rounded-xl text-4xl font-bold transition-all duration-200
+              aspect-square rounded-2xl text-5xl font-bold transition-all duration-200
               ${
                 cell === null && !gameState.winner
-                  ? "bg-white dark:bg-zinc-700 hover:bg-zinc-50 dark:hover:bg-zinc-600 hover:scale-[1.02] cursor-pointer shadow-sm"
-                  : "bg-white dark:bg-zinc-700 cursor-default"
+                  ? "bg-white dark:bg-amber-950/50 hover:bg-amber-50 dark:hover:bg-amber-900/70 hover:scale-[1.05] cursor-pointer shadow-lg hover:shadow-xl"
+                  : "bg-white dark:bg-amber-950/50 cursor-default shadow-lg"
               }
-              ${winningLine?.includes(index) ? "animate-pulse-win" : ""}
-              ${cell === "X" ? "text-amber-600 dark:text-amber-400" : ""}
+              ${winningLine?.includes(index) ? "animate-pulse-win bg-amber-100 dark:bg-amber-900/80" : ""}
+              ${cell === "X" ? "text-amber-700 dark:text-amber-400" : ""}
               ${cell === "O" ? "text-amber-500 dark:text-amber-300" : ""}
             `}
           >
@@ -260,19 +261,19 @@ export function GameBoard({
       <div className="flex gap-3 justify-center">
         <button
           onClick={resetGame}
-          className="px-6 py-3 rounded-xl bg-amber-600 text-white font-medium hover:bg-amber-700 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 shadow-lg shadow-amber-500/25"
+          className="px-6 py-3 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 text-white font-semibold hover:from-amber-400 hover:to-amber-500 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 shadow-lg shadow-amber-500/30"
         >
           New Round
         </button>
         <button
           onClick={clearScores}
-          className="px-6 py-3 rounded-xl bg-zinc-200 dark:bg-zinc-700 text-zinc-700 dark:text-zinc-300 font-medium hover:bg-zinc-300 dark:hover:bg-zinc-600 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
+          className="px-6 py-3 rounded-xl bg-white dark:bg-amber-950/50 border-2 border-amber-200 dark:border-amber-800 text-amber-800 dark:text-amber-200 font-semibold hover:bg-amber-50 dark:hover:bg-amber-900/70 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
         >
           Reset Scores
         </button>
         <button
           onClick={onReset}
-          className="px-6 py-3 rounded-xl border-2 border-zinc-300 dark:border-zinc-600 text-zinc-600 dark:text-zinc-400 font-medium hover:border-zinc-400 dark:hover:border-zinc-500 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
+          className="px-6 py-3 rounded-xl bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300 font-semibold hover:bg-amber-200 dark:hover:bg-amber-800/50 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
         >
           Exit
         </button>
